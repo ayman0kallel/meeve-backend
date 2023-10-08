@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import Axios from 'axios'; // Import Axios for making HTTP requests
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,55 +14,83 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Meeve
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-const defaultTheme = createTheme({
-  palette: {
-    primary: {
-      light: '#1ccf90',
-      main: '#1ccf90',
-      dark: '#1ccf90',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#2d2d2d',
-      main: '#2d2d2d',
-      dark: '#2d2d2d',
-      contrastText: '#000',
-    },
-    terciary: {
-      light: '#fffbf1',
-      main: '#fffbf1',
-      dark: '#fffbf1',
-      contrastText: '#000',
-    },
-  },
-});
-// TODO remove, this demo shouldn't need to reset the theme.
+function SignUp() {
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const [users, setUsers] = useState([]);
 
-// const defaultTheme = createTheme();
-
-export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const formData = new FormData(event.currentTarget);
+
+    // Create an object with user data
+    const userData = {
+      firstname: formData.get('firstName'),
+      lastname: formData.get('lastName'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+
+    // Check if the email is already registered
+    if (users.some((user) => user.email === userData.email)) {
+      setError('Email address is already in use. Please use a different email.');
+      return;
+    }
+
+    try {
+      const response = await Axios.post('http://localhost:5000/users', userData);
+
+      if (response.status === 201) {
+        // Registration successful, redirect to login page
+        navigate('/');
+      } else {
+        setError('Registration failed. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again later.');
+    }
   };
+  
+  function Copyright(props) {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="/">
+          Meeve
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
+  const defaultTheme = createTheme({
+    palette: {
+      primary: {
+        light: '#1ccf90',
+        main: '#1ccf90',
+        dark: '#1ccf90',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#2d2d2d',
+        main: '#2d2d2d',
+        dark: '#2d2d2d',
+        contrastText: '#000',
+      },
+      terciary: {
+        light: '#fffbf1',
+        main: '#fffbf1',
+        dark: '#fffbf1',
+        contrastText: '#000',
+      },
+    },
+  });
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -131,6 +161,7 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
+            {error && <p>Error: {error}</p>}
             <Button
               type="submit"
               fullWidth
@@ -153,3 +184,5 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+export default SignUp;

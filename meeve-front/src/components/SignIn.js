@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,11 +17,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 
 function Copyright(props) {
-  const navigate = useNavigate();
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         Meeve
       </Link>{' '}
       {new Date().getFullYear()}
@@ -54,14 +54,43 @@ const defaultTheme = createTheme({
 });
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const formData = new FormData(event.currentTarget);
+
+    const userData = {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.status === 200) {
+        // Login successful, redirect to the dashboard or another page
+        navigate('/HomePage',{ replace: true });
+      } else if (response.status === 401) {
+        // Unauthorized, incorrect email or password
+        setError('Invalid email or password');
+      } else {
+        // Handle other response statuses and display an error message
+        setError('Login failed. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again later.');
+    }
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -106,6 +135,11 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {error && (
+              <Typography variant="body2" color="error">
+                {error}
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
