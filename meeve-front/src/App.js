@@ -1,9 +1,9 @@
 import Profile from "./components/Profile";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import meeveTheme from './style/meeveTheme.js'; 
+import HomePage from "../src/pages/HomePage"
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <Router>
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/Signup" element={<SignUp/>}/>
+        <Route path="/HomePage" element={<HomePage/>}/>
       </Routes>
       </Router>
     </div>

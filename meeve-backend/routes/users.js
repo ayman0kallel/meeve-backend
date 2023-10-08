@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createUser, getUsers, getUser, deleteUser, updateUser } from '../controllers/users.js';
+import { createUser, getUsers, getUser, deleteUser, updateUser, loginUser } from '../controllers/users.js';
 
 const router = express.Router();
 
@@ -9,6 +9,9 @@ router.get('/', getUsers);
 
 // add route
 router.post('/', createUser);
+
+// login route
+router.post('/login', loginUser);
 
 // user detail route
 router.get('/:id', getUser);
