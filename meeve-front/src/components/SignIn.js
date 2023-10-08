@@ -12,11 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, /*useNavigate*/ } from 'react-router-dom';
 
 
 function Copyright(props) {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
