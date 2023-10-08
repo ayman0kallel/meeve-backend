@@ -9,11 +9,11 @@ function App() {
     <ThemeProvider theme={meeveTheme}>
     <div>
       <Router>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/Signup" element={<SignUp/>}/>
-        <Route path="/HomePage" element={<HomePage/>}/>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/Signup" element={<SignUp/>}/>
+          <Route path="/HomePage" element={<HomePage/>}/>
+        </Routes>
       </Router>
     </div>
     </ThemeProvider>

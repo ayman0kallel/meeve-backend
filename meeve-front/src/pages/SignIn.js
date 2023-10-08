@@ -12,8 +12,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink, /*useNavigate*/ } from 'react-router-dom';
+import {ThemeProvider } from '@mui/material/styles';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { MeeveTheme } from '../theme/theme';
 
 
 function Copyright(props) {
@@ -30,28 +31,7 @@ function Copyright(props) {
 }
 
 
-const defaultTheme = createTheme({
-  palette: {
-    primary: {
-      light: '#1ccf90',
-      main: '#1ccf90',
-      dark: '#1ccf90',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#2d2d2d',
-      main: '#2d2d2d',
-      dark: '#2d2d2d',
-      contrastText: '#000',
-    },
-    terciary: {
-      light: '#fffbf1',
-      main: '#fffbf1',
-      dark: '#fffbf1',
-      contrastText: '#000',
-    },
-  },
-});
+
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -93,7 +73,7 @@ export default function SignIn() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={MeeveTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
