@@ -2,6 +2,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import HomePage from "../src/pages/HomePage"
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import MatchPage from "./pages/MatchPage";
+import Profile from "./pages/Profile";
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/Signup" element={<SignUp/>}/>
           <Route path="/HomePage" element={<HomePage/>}/>
+          <Route path="/match" element={<MatchPage/>}/>
+          <Route path="/profile" element={<Profile/>}/>
         </Routes>
       </Router>
     </div>

@@ -39,7 +39,7 @@ const NavigationBar = () => {
     <AppBar position="static" style={{ backgroundColor: defaultTheme.palette.secondary.main, display:'flex', alignItems: 'center' }}>
       <Toolbar>
         <div className="icon-container">
-          <IconButton style={{ color: defaultTheme.palette.primary.main }} component={Link} to="/inicio">
+          <IconButton style={{ color: defaultTheme.palette.primary.main }} component={Link} to="/match">
             <HomeIcon />
           </IconButton>
         </div>
