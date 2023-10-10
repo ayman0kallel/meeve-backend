@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <ThemeProvider theme={meeveTheme}>
     <div>
       <Router>
         <Routes>
@@ -16,7 +15,6 @@ function App() {
         </Routes>
       </Router>
     </div>
-    </ThemeProvider>
   );
 }
 
