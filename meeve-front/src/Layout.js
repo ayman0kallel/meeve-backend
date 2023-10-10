@@ -1,5 +1,5 @@
 import React from "react";
-import NavegationBar from "./components/NavegatioBar";
+import NavigationBar from "./pages/NavigationBar.js";
 import { ThemeProvider } from 'styled-components';
 import meeveTheme from './style/meeveTheme.js'; 
 
@@ -10,7 +10,7 @@ function Layout({ children }) {
         <div style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
           {children}
         </div>
-        <NavegationBar />
+        <NavigationBar />
       </div>
     </ThemeProvider>
   );
