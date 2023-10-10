@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div >
+    <ThemeProvider theme={meeveTheme}>
+    <div>
       <Router>
         <Routes>
           <Route path="/" element={<SignIn />} />
@@ -14,8 +15,8 @@ function App() {
           <Route path="/HomePage" element={<HomePage/>}/>
         </Routes>
       </Router>
-      
     </div>
+    </ThemeProvider>
   );
 }
 
