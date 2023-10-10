@@ -1,9 +1,13 @@
+import Layout from "../Layout";
+
 export default function HomePage(){
 
     return (
-        <div>
-            HomePage
-        </div>
+        <Layout>
+            <div>
+                HomePage
+            </div>
+        </Layout>
     );
 
 }
