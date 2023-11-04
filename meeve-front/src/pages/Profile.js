@@ -1,12 +1,19 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import GroupIcon from '@mui/icons-material/Group';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import Layout from '../Layout';
+import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ProfileStyle from "../style/pages/Profile.css";
+import MeetCards from "../components/profile/MeetCards.js";
 
 const theme = createTheme({
   typography: {
@@ -35,95 +42,22 @@ const theme = createTheme({
 });
 
 const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
-      padding: '20px',
-    },
-    sportsContainer: {
-      width: '90%',
-      margin: '20px auto 0', 
-      backgroundColor: '#F5F5F5',
-      borderRadius: '10px',
-      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-      padding: '10px',
-      display: 'flex',
-      flexDirection: 'column',
-    },
+
     avatar: {
       width: '100px',
       height: '100px',
       marginBottom: '10px',
       border: '2px solid #1ccf90',
     },
-    sportList: {
-      listStyleType: 'none',
-      padding: '0',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    sportItem: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: '#333',
-      backgroundColor: '#E5E5E5',
-      borderRadius: '5px',
-      padding: '10px',
-      margin: '5px',
-      flex: '1',
-    },
-    sportIcon: {
-      fontSize: '30px',
-    },
-    sportName: {
-      fontSize: '14px',
-      marginTop: '5px',
-    },
-    friendsCountContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      backgroundColor: '#E5E5E5',
-      borderRadius: '5px',
-      padding: '10px',
-      margin: '5px',
-    },
-    friendsIcon: {
-      fontSize: '30px',
-      marginRight: '10px',
-    },
-    friendsCount: {
-      fontSize: '14px',
-    },
-  biographySection: {
-    width: '90%',
-    marginTop: '20px',
-    backgroundColor: '#F5F5F5',
-    borderRadius: '10px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-    padding: '10px',
-    textAlign: 'left', 
-  },
-  biographyTitle: {
-    fontSize: '18px', 
-    fontWeight: 'bold', 
-  },
-  biographyText: {
-    fontSize: '14px', 
-    lineHeight: '1.2', 
-    
-  },
+   
 };
 
 const Profile = () => {
   const userProfile = {
-    username: 'User',
-    profileImage: 'URL',
-    sports: ['Footbal', 'Basket', 'Gym'],
+    username: 'User Name',
+    profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    favoriteGym: 'Basic Fit',
+    favoriteSport:'Fitness',
     friendsCount: 50,
     biography:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lorem eu purus feugiat ullamcorper. Vivamus nec quam ut erat malesuada tincidunt in non libero.',
@@ -132,51 +66,65 @@ const Profile = () => {
   return (
     <Layout>
       <ThemeProvider theme={theme}>
-        <div style={styles.container}>
-          <Avatar
+        <div className="ProfileContainer">
+          <section className='profileHeaderContainer'>
+          <Avatar className='userAvatar'
             alt={userProfile.username}
             src={userProfile.profileImage}
             sx={styles.avatar}
           />
-          <Typography variant="h5">{userProfile.username}</Typography>
-
-          <div style={styles.sportsContainer}>
-            <Typography variant="subtitle1">Sport pratiqués</Typography>
-            <ul style={styles.sportList}>
-              {userProfile.sports.map((sport, index) => (
-                <li key={index} style={styles.sportItem}>
-                  <div>
-                    {sport === 'Footbal' && (
-                      <SportsSoccerIcon style={styles.sportIcon} />
-                    )}
-                    {sport === 'Basket' && (
-                      <SportsBasketballIcon style={styles.sportIcon} />
-                    )}
-                    {sport === 'Gym' && (
-                      <FitnessCenterIcon style={styles.sportIcon} />
-                    )}
-                  </div>
-                  <Typography variant="body2" style={styles.sportName}>
-                    {sport}
-                  </Typography>
-                </li>
-              ))}
+          <section className='profileHeaderButtons'>
+            <LogoutIcon className='buttonHeader'></LogoutIcon>
+            <ManageAccountsIcon className='buttonHeader'></ManageAccountsIcon>
+          </section>
+          <Typography className='helloMessage' variant="h5">Bonjour,</Typography>
+          <Typography className='userNameProfile' variant="h5">{userProfile.username}</Typography>     
+          </section>
+          <section className='interactionButtonContainer'>
+          <Button variant="contained" endIcon={<AddBoxIcon />}>
+            Créer un Meet
+          </Button>
+          <IconButton aria-label="PersonAddAlt1Icon">
+            <PersonAddAlt1Icon/>
+          </IconButton>
+          </section>
+          <section className='userPersonalInfo'>
+            <ul className='itemPersonal'>
+                <li className='userItem userFriends'>
+                  <Typography className='itemValue'>{userProfile.friendsCount}</Typography>
+                  <Typography className='itemTitle'> <GroupIcon className='itemIcon'></GroupIcon>   Amies</Typography>
+                </li> 
+                <li className='userItem userFavPlace'>
+                  <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
+                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Lieu</Typography>
+                </li> 
+                <li className='userItem userFavSport'>
+                  <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
+                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Sport</Typography>
+                </li> 
             </ul>
-            <div style={styles.friendsCountContainer}>
-              <GroupIcon style={styles.friendsIcon} />
-              <Typography variant="body2" style={styles.friendsCount}>
-                Amies {userProfile.friendsCount}
-              </Typography>
-            </div>
-          </div>
+          </section>
 
-          <section style={styles.biographySection}>
-            <Typography variant="h6" style={styles.biographyTitle}>
-              Biography
+          <section  className='biographySection' >
+            <Typography variant="h6" className='biographyTitle' >
+              Sur-Moi
             </Typography>
-            <Typography variant="body2" style={styles.biographyText}>
+            <Typography variant="body2" className='biographyText'>
               {userProfile.biography}
             </Typography>
+          </section>
+          <section className='userMeets'>
+          <Typography variant="h6" className='meetTitle' >
+              Mes Séances
+          </Typography>
+          <div className='userMeetsCardsContainer'>
+          <MeetCards></MeetCards>
+          <MeetCards></MeetCards>
+          <MeetCards></MeetCards>
+          </div>
+          </section>
+          <section className='contactMeeve'>
+            <Typography className='tileContact'>Nous Contacter <MailIcon></MailIcon></Typography>
           </section>
         </div>
       </ThemeProvider>
