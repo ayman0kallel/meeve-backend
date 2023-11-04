@@ -1,13 +1,19 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import GroupIcon from '@mui/icons-material/Group';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import Layout from '../Layout';
+import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ProfileStyle from "../style/pages/Profile.css"
+import ProfileStyle from "../style/pages/Profile.css";
+import MeetCards from "../components/profile/MeetCards.js";
 
 const theme = createTheme({
   typography: {
@@ -48,10 +54,10 @@ const styles = {
 
 const Profile = () => {
   const userProfile = {
-    username: 'User',
-    profileImage: 'URL',
+    username: 'User Name',
+    profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     favoriteGym: 'Basic Fit',
-    sports: ['Footbal', 'Basket', 'Gym'],
+    favoriteSport:'Fitness',
     friendsCount: 50,
     biography:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lorem eu purus feugiat ullamcorper. Vivamus nec quam ut erat malesuada tincidunt in non libero.',
@@ -61,50 +67,64 @@ const Profile = () => {
     <Layout>
       <ThemeProvider theme={theme}>
         <div className="ProfileContainer">
-          <Avatar
+          <section className='profileHeaderContainer'>
+          <Avatar className='userAvatar'
             alt={userProfile.username}
             src={userProfile.profileImage}
             sx={styles.avatar}
           />
-          <Typography variant="h5">{userProfile.username}</Typography>
-
-          <div className="sportsContainer" >
-            <Typography variant="subtitle1">Sport pratiqués</Typography>
-            <ul className='sportList'>
-              {userProfile.sports.map((sport, index) => (
-                <li key={index} className='sportItem'>
-                  <div>
-                    {sport === 'Footbal' && (
-                      <SportsSoccerIcon className= "sportIcon"  />
-                    )}
-                    {sport === 'Basket' && (
-                      <SportsBasketballIcon className= "sportIcon"/>
-                    )}
-                    {sport === 'Gym' && (
-                      <FitnessCenterIcon className= "sportIcon" />
-                    )}
-                  </div>
-                  <Typography variant="body2" className="sportName">
-                    {sport}
-                  </Typography>
-                </li>
-              ))}
+          <section className='profileHeaderButtons'>
+            <LogoutIcon className='buttonHeader'></LogoutIcon>
+            <ManageAccountsIcon className='buttonHeader'></ManageAccountsIcon>
+          </section>
+          <Typography className='helloMessage' variant="h5">Bonjour,</Typography>
+          <Typography className='userNameProfile' variant="h5">{userProfile.username}</Typography>     
+          </section>
+          <section className='interactionButtonContainer'>
+          <Button variant="contained" endIcon={<AddBoxIcon />}>
+            Créer un Meet
+          </Button>
+          <IconButton aria-label="PersonAddAlt1Icon">
+            <PersonAddAlt1Icon/>
+          </IconButton>
+          </section>
+          <section className='userPersonalInfo'>
+            <ul className='itemPersonal'>
+                <li className='userItem userFriends'>
+                  <Typography className='itemValue'>{userProfile.friendsCount}</Typography>
+                  <Typography className='itemTitle'> <GroupIcon className='itemIcon'></GroupIcon>   Amies</Typography>
+                </li> 
+                <li className='userItem userFavPlace'>
+                  <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
+                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Lieu</Typography>
+                </li> 
+                <li className='userItem userFavSport'>
+                  <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
+                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Sport</Typography>
+                </li> 
             </ul>
-            <div className='friendsCountContainer'>
-              <GroupIcon className="friendsIcon"  />
-              <Typography variant="body2" className="friendsCount" >
-                Amies {userProfile.friendsCount}
-              </Typography>
-            </div>
-          </div>
+          </section>
 
           <section  className='biographySection' >
             <Typography variant="h6" className='biographyTitle' >
-              Biography
+              Sur-Moi
             </Typography>
             <Typography variant="body2" className='biographyText'>
               {userProfile.biography}
             </Typography>
+          </section>
+          <section className='userMeets'>
+          <Typography variant="h6" className='meetTitle' >
+              Mes Séances
+          </Typography>
+          <div className='userMeetsCardsContainer'>
+          <MeetCards></MeetCards>
+          <MeetCards></MeetCards>
+          <MeetCards></MeetCards>
+          </div>
+          </section>
+          <section className='contactMeeve'>
+            <Typography className='tileContact'>Nous Contacter <MailIcon></MailIcon></Typography>
           </section>
         </div>
       </ThemeProvider>
