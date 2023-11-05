@@ -13,7 +13,7 @@ import Layout from '../Layout';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ProfileStyle from "../style/pages/Profile.css";
-import MeetCards from '../components/profile/MeetCards';
+import MeetCards from '../Components/profile/MeetCards';
 
 const theme = createTheme({
   typography: {
