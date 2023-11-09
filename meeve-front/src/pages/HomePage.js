@@ -1,11 +1,12 @@
-import Layout from "../Layout";
+import CarteComponent from "../Components/MapComponent/CarteComponent";
+import Layout from "../Components/Layout/Layout";
 
 export default function HomePage(){
 
     return (
         <Layout>
             <div>
-                HomePage
+                <CarteComponent/>
             </div>
         </Layout>
     );
