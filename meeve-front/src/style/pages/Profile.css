@@ -1,0 +1,170 @@
+.ProfileContainer{
+  width: 100%;
+  height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /*padding: 20px;*/
+}
+/*HEADER*/
+.profileHeaderContainer{
+  width: 100%;
+  height: 25%;
+  background-color: #333;
+  position: relative;
+  text-align: left;
+  border-radius: 5px;
+}
+.profileHeaderButtons{
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+  font-size: 30px;
+  color:#7b7b7b;
+  margin-top: 0%;
+}
+.helloMessage{
+  margin-top: 3% !important;
+}
+
+.userNameProfile, .helloMessage{
+  margin-left: 5% !important;
+  color: #E5E5E5;
+}
+
+.userNameProfile{
+  color:#1ccf90;
+  margin-bottom: 3% !important;
+}
+
+.avatar{ /*MUI AVATAR*/
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 2px solid #1ccf90;
+}
+/*MUI AVATAR container*/
+.MuiAvatar-root.MuiAvatar-circular.MuiAvatar-colorDefault.userAvatar.css-qyfoo-MuiAvatar-root ,.userAvatar {
+position: absolute !important;
+top: 35%;
+left: 60%;
+}
+
+/*INTERACTION BUTTONS*/
+.interactionButtonContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2%;
+}
+
+.inviteFriendsButton{
+  background-color: #333 !important;
+  width: 5%;
+}
+
+/*PERSONAL INFO*/
+.userPersonalInfo{
+  width: 100%;
+}
+.itemIcon{
+  width: 1.2rem !important;
+}
+.itemPersonal{
+    list-style-type:none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.itemTitle{
+  display: flex;
+  align-items: center;
+  gap: 10%;
+  font-size: 14px !important; 
+  color: #7b7b7b;
+}
+.itemValue{
+  font-weight: 600 !important;
+  color:#333;
+
+}
+.userItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    flex : 1;
+}
+.sportIcon {
+    font-size: 30px;
+}
+.sportName{
+    font-size: 14px; 
+    margin-top: 5px;
+}
+
+.friendsCountContainer {
+    display: flex;
+    align-items: center;
+    background-color: #E5E5E5;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .biographySection {
+    width: 96%;
+    text-align: left;
+  }
+  
+  .biographyTitle {
+    font-size: 18px;
+    font-weight: 600 !important;
+    margin-bottom: 3% !important;
+      color: #333;
+  }
+  
+  .biographyText {
+    font-size: 14px;
+    line-height: 1.2;
+    color: #7b7b7b;
+  }
+
+  .userMeets{
+    width: 100%;  
+    margin-top: 5%;
+
+  }
+  .meetTitle{
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600 !important;
+    margin-bottom: 3% !important;
+    color: #333;
+  }
+.userMeetsCardsContainer{
+  display: flex;
+  width: 100%;
+  gap: 5%;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.contactMeeve{
+  width: 100%;
+  padding: 5% 0%;
+}
+.tileContact{
+  color: #7b7b7b;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  justify-content: end;
+}
