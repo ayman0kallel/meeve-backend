@@ -4,7 +4,6 @@ import HomePage from "../src/pages/HomePage"
 import Profile from "../src/pages/Profile"
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MatchPage from "./pages/MatchPage";
-import Profile from "./pages/Profile";
 
 
 function App() {

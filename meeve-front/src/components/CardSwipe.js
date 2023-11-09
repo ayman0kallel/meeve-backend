@@ -1,28 +1,62 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import React from 'react';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+  },
+  palette: {
+    primary: {
+      light: '#1ccf90',
+      main: '#1ccf90',
+      dark: '#1ccf90',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#2d2d2d',
+      main: '#2d2d2d',
+      dark: '#2d2d2d',
+      contrastText: '#000',
+    },
+    tertiary: {
+      light: '#fffbf1',
+      main: '#fffbf1',
+      dark: '#fffbf1',
+      contrastText: '#000',
+    },
+  },
+});
 
-export default function CardSwipe() {
-    //TODO: remplacer le texte par variable bdd table séance
+const CardSwipe = (props) => {
+  const { title, image, date, time, place } = props;
+
   return (
-    <Card
-      sx={{ minWidth: 150 }}
-      style={{ backgroundColor: "#1ccf90", textAlign: "center"}}
-    >
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} gutterBottom>
-          Fitness
-        </Typography>
-        <Typography variant="h5" component="div">
-          Fitness Park Lyon Part-Dieu
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="#2d2d2d">
-          Vendredi 11 novembre 
-        </Typography>
-        <Typography variant="body2">9h - 12h</Typography>
-      </CardContent>
-    </Card>
+    <ThemeProvider theme={theme}>
+      <Card sx={{ minWidth: 200 }} className='meetsCardsContainer'>
+          {image && (
+            <CardMedia
+              component="img"
+              height="80"
+              image={image}
+              alt="Image Alt Text"
+            />
+          )}
+          <CardContent className='meetCardContent'>
+            <Typography className='cardTitle' gutterBottom variant="h6" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary"> <b>Date: </b>{date}</Typography>
+            <Typography variant="body2" color="text.secondary"> <b>Heure: </b>{time}</Typography>
+            <Typography variant="body2" color="text.secondary"> <b>Lieu: </b>{place}</Typography>
+          </CardContent>
+      </Card>
+    </ThemeProvider>
   );
-}
+};
+
+export default CardSwipe;
+

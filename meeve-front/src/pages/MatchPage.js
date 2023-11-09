@@ -1,8 +1,11 @@
 import Layout from "../Layout";
 import TinderCard from 'react-tinder-card';
 import '../match.css';
-
 import { useState } from "react";
+import CardSwipe from "../components/CardSwipe";
+import logo from "../assets/images/LOGO.png";
+import CancelIcon from '@mui/icons-material/Cancel';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const MatchPage = () => {
 
@@ -37,22 +40,31 @@ const MatchPage = () => {
     return (
         <Layout>
             <div className="matchPage">
+                <div className="meeve-logo">
+                    <img src={logo} alt="logo"></img>
+                </div>
                 <div className="swipe-container">
                     <div className="card-container">
                         {meets.map((meet) =>
                         <TinderCard className='swipe' key={meet.name} onSwipe={(dir) => swiped(dir, meet.name)} onCardLeftScreen={() => outOfFrame(meet.name)}>
                             <div className="card">
                                 <div className="meet-image">
-                                    <img src={meet.url} alt="meet-image"></img>
+                                    <img className="img-meet" src={meet.url} alt="meet-image"></img>
                                 </div>
-                                <h2>{meet.name}</h2>
-                                <h4>Date : {meet.date}</h4>
-                                <h4>Heure : {meet.heure}</h4>
-                                <h4>Lieu : {meet.lieu}</h4>
+                                <CardSwipe
+                                    title={meet.name}
+                                    date={meet.date}
+                                    time={meet.heure}
+                                    place={meet.lieu}
+                                />
                             </div>
                         </TinderCard>
                         )}
                     </div>
+                </div>
+                <div className="swipeIcon">
+                    <CancelIcon className="itemIcon"></CancelIcon>
+                    <FavoriteIcon className="itemIcon"></FavoriteIcon>
                 </div>
             </div> 
         </Layout>
