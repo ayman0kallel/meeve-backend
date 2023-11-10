@@ -2,8 +2,6 @@ import React from "react";
 import NavigationBar from "../../pages/NavigationBar.js";
 import { ThemeProvider } from 'styled-components';
 import meeveTheme from '../../style/meeveTheme.js'; 
-import meeve from "../../assets/img/meeve-noir.png"
-import contour from "../../assets/img/contour-logo.png"
 
 function Layout({ children }) {
   return (
