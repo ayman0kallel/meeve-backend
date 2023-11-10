@@ -9,11 +9,11 @@ import GroupIcon from '@mui/icons-material/Group';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import Layout from '../Layout';
+import Layout from '../Components/Layout/Layout';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ProfileStyle from "../style/pages/Profile.css";
-import MeetCards from "../components/profile/MeetCards.js";
+import MeetCards from "../Components/profile/MeetCards";
 
 const theme = createTheme({
   typography: {
