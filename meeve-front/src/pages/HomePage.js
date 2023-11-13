@@ -1,5 +1,5 @@
-import CarteComponent from "../Components/MapComponent/CarteComponent";
-import Layout from "../Components/Layout/Layout";
+import CarteComponent from "../components/MapComponent/CarteComponent";
+import Layout from "../components/Layout/Layout";
 
 export default function HomePage(){
 
