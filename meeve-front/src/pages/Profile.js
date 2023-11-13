@@ -12,8 +12,9 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Layout from '../Layout';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ProfileStyle from "../style/pages/Profile.css";
+import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
+import { Link } from 'react-router-dom';
 
 const theme = createTheme({
   typography: {
@@ -81,7 +82,7 @@ const Profile = () => {
           <Typography className='userNameProfile' variant="h5">{userProfile.username}</Typography>     
           </section>
           <section className='interactionButtonContainer'>
-          <Button variant="contained" endIcon={<AddBoxIcon />}>
+          <Button variant="contained" endIcon={<AddBoxIcon />} component={Link} to="/CreerMeet">
             Créer un Meet
           </Button>
           <IconButton aria-label="PersonAddAlt1Icon">
