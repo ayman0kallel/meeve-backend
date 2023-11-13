@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {CardActionArea} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import cardStyle from '../../style/profile/Cards.css'
+import  '../../style/profile/Cards.css'
 
 const theme = createTheme({
     typography: {
@@ -37,7 +37,7 @@ const theme = createTheme({
     const meetInformation = {
       title: 'Fitness',
       image: 'https://images.pexels.com/photos/28061/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      date: 'Vendredi 12 Juilliet',
+      date: 'Vendredi 12 Juillet',
       time:'9h - 12h',
       place: 'Lyon Part-dieu',
       creator:'Davis',

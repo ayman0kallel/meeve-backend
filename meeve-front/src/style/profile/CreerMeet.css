@@ -1,0 +1,64 @@
+.creetMeetContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    width: 80%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.creerMeetFormContainer{
+    width: 100%;
+    height: 90%;
+}
+
+.creerMeetForm{
+    width: 100%;
+    height: 100%;
+}
+.cMeetPrincipalInfo {
+    font-weight: 400;
+    color: #7b7b7b !important;
+}
+
+.creerMeetForm > .css-1wuilmg-MuiAutocomplete-root {
+    width: 100%;
+    margin-top: 10%;
+}
+.mCreerTitle{
+        text-align: left;
+        font-weight: 600 !important;
+        margin-bottom: 3% !important;
+        color: #333;
+
+}
+.datePickerContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+.MuiStack-root.css-4jnixx-MuiStack-root {
+    width: 47%;
+}
+.css-4jnixx-MuiStack-root>.MuiTextField-root {
+    min-width: 100% !important;
+}
+.submitCreerunMeet{
+    width: 100%;
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/*
+#combo-box-demo{
+    width: 93%;
+}
+*/
