@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import '../style/cardSwipe.css'
 
 const theme = createTheme({
   typography: {
@@ -36,7 +37,7 @@ const CardSwipe = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card sx={{ minWidth: 200 }} className='meetsCardsContainer'>
+      <Card sx={{ minWidth: 200,' & .css-ablsu8-MuiPaper-root-MuiCard-root': { boxShadow: 'none !important'}}} className='meetsCardsContainer'>
           {image && (
             <CardMedia
               component="img"
