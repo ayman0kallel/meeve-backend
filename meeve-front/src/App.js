@@ -2,7 +2,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import HomePage from "../src/pages/HomePage"
 import Profile from "../src/pages/Profile"
-import CreerMeet from "./Components/profile/CreerMeet";
+import CreerMeet from "./components/profile/CreerMeet";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MatchPage from "./pages/MatchPage";
 
