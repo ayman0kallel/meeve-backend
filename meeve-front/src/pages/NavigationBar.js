@@ -42,6 +42,9 @@ const NavigationBar = () => {
       display:'flex', 
       alignItems: 'center',
       borderRadius:'36px',
+      width: '90%',
+      alignSelf: 'center',
+      marginBottom: '2%'
        }}>
       <Toolbar>
         <div className="icon-container">
@@ -50,8 +53,8 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/HomePage">
             <LocationOnOutlinedIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+            fontSize: '2rem'
+            }} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -60,8 +63,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/Match">
             <AddOutlinedIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+            fontSize: '2rem'}} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -70,8 +72,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/Profile">
             <PersonIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+              fontSize: '2rem'}} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -80,8 +81,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/profile">
             <Trophy sx={{
-            width: '40px',
-            height: '40px'}}/>
+              fontSize: '2rem'}}/>
           </IconButton>
         </div>
       </Toolbar>
