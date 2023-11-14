@@ -12,6 +12,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Layout from '../components/Layout/Layout.js';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from "../assets/img/LOGO.png";
 
 import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
@@ -69,6 +70,9 @@ const Profile = () => {
     <Layout>
       <ThemeProvider theme={theme}>
         <div className="ProfileContainer">
+        <div className="logo-profile">
+                    <img src={logo} alt="logo"></img>
+                </div>
           <section className='profileHeaderContainer'>
           <Avatar className='userAvatar'
             alt={userProfile.username}

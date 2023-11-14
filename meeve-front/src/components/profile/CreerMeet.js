@@ -6,6 +6,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Typography from '@mui/material/Typography';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
+import logo from "../../assets/img/LOGO.png";
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { Link } from 'react-router-dom';
 
 //date
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -150,9 +154,14 @@ const sports = [
       <Layout>
         <ThemeProvider theme={theme}>
             <div className='creetMeetContainer'>
-              <section className='logo'>
-                <img src='' alt='logo Meet'></img>
-              </section>
+            <div className="meeve-logo">
+                    <img src={logo} alt="logo"></img>
+                </div>
+                <section className='backButton'>
+                <IconButton  aria-label="Retour" component={Link} to="/Profile">
+                  <ArrowBackIosIcon />
+                </IconButton>
+                </section>
               <section className='creerMeetFormContainer'>
                 <form className='creerMeetForm'>
                 <Typography variant="h6" className='mCreerTitle' >
