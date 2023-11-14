@@ -1,8 +1,8 @@
-import Layout from "../Layout";
+import Layout from "../Components/Layout/Layout";
 import TinderCard from 'react-tinder-card';
 import '../match.css';
 import { useState } from "react";
-import CardSwipe from "../components/CardSwipe";
+import CardSwipe from "../Components/CardSwipe";
 import logo from "../assets/images/LOGO.png";
 import CancelIcon from '@mui/icons-material/Cancel';
 import FavoriteIcon from '@mui/icons-material/Favorite';
