@@ -58,7 +58,7 @@ const NavigationBar = () => {
           <IconButton sx={{ 
             color: defaultTheme.palette.primary.main,
             margin: '0 8px'
-            }} component={Link} to="/chat">
+            }} component={Link} to="/Match">
             <AddOutlinedIcon sx={{
             width: '40px',
             height: '40px'}} />

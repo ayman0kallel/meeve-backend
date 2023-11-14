@@ -93,16 +93,16 @@
     justify-content: space-evenly;
 }
 
-.itemIcon {
+.itemIconX, .itemIconL {
     width: 3rem !important;
     height: 3rem !important;
 }
 
-.itemIcon:nth-child(1) {
+.itemIconX {
     color: red;
 }
 
-.itemIcon:nth-child(2) {
+.itemIconL {
     color: #1ccf90;
 }
 

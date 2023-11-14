@@ -1,11 +1,12 @@
-import Layout from "../Layout";
+import Layout from "../components/Layout/Layout";
 import TinderCard from 'react-tinder-card';
 import '../match.css';
-import { useState } from "react";
+import { useState , useRef} from "react";
 import CardSwipe from "../components/CardSwipe";
-import logo from "../assets/images/LOGO.png";
+import logo from "../assets/img/LOGO.png";
 import CancelIcon from '@mui/icons-material/Cancel';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Button } from "@mui/material";
 
 const MatchPage = () => {
 
@@ -27,6 +28,7 @@ const MatchPage = () => {
     ]
 
     const [lastDirection, setLastDirection] = useState();
+    const cardRef = useRef(null);
 
     const swiped = (direction, nameToDelete) => {
         console.log('removing ' + nameToDelete);
@@ -35,6 +37,16 @@ const MatchPage = () => {
 
     const outOfFrame = (name) => {
         console.log(name + 'left the screen')
+    }
+
+    const handleSwipeLeft = () => {
+        //swiped('left', cardRef.current.meet.name);
+        console.log('swipe left');
+    }
+
+    const handleSwipeRight = () => {
+        setLastDirection('right');
+        console.log('swipe right');
     }
 
     return (
@@ -63,8 +75,13 @@ const MatchPage = () => {
                     </div>
                 </div>
                 <div className="swipeIcon">
-                    <CancelIcon className="itemIcon"></CancelIcon>
-                    <FavoriteIcon className="itemIcon"></FavoriteIcon>
+                    <Button onClick={handleSwipeLeft}>
+                        <CancelIcon className="itemIconX"></CancelIcon>
+                    </Button>
+                    <Button onClick={handleSwipeRight}>
+                        <FavoriteIcon className="itemIconL"></FavoriteIcon>
+                    </Button>
+                    
                 </div>
             </div> 
         </Layout>
