@@ -1,7 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import TinderCard from 'react-tinder-card';
 import '../match.css';
-import { useState , useRef} from "react";
+import React, { useState , useRef, useMemo } from "react";
 import CardSwipe from "../components/CardSwipe";
 import logo from "../assets/img/LOGO.png";
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -27,26 +27,48 @@ const MatchPage = () => {
         }
     ]
 
+    const [currentIndex, setCurrentIndex] = useState(meets.length - 1)
     const [lastDirection, setLastDirection] = useState();
-    const cardRef = useRef(null);
+    const currentIndexRef = useRef(currentIndex);
 
-    const swiped = (direction, nameToDelete) => {
-        console.log('removing ' + nameToDelete);
-        setLastDirection(direction);
+    const childRefs = useMemo(
+        () =>
+        Array(meets.length)
+            .fill(0)
+            .map((i) => React.createRef()),
+        []
+    )
+
+    const updateCurrentIndex = (val) => {
+        setCurrentIndex(val)
+        currentIndexRef.current = val
     }
 
-    const outOfFrame = (name) => {
-        console.log(name + 'left the screen')
+    const canSwipe = currentIndex >= 0
+
+
+    const swiped = (direction, nameToDelete, index) => {
+        setLastDirection(direction)
+        updateCurrentIndex(index - 1)
     }
 
-    const handleSwipeLeft = () => {
-        //swiped('left', cardRef.current.meet.name);
-        console.log('swipe left');
+    const outOfFrame = (name, idx) => {
+        console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
+        // handle the case in which go back is pressed before card goes outOfFrame
+        currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
     }
 
-    const handleSwipeRight = () => {
-        setLastDirection('right');
-        console.log('swipe right');
+    const swipe = async (dir) => {
+        if (canSwipe && currentIndex < meets.length) {
+          await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+        }
+    
+    }
+
+    const goBack = async () => {
+        const newIndex = currentIndex + 1
+        updateCurrentIndex(newIndex)
+        await childRefs[newIndex].current.restoreCard()
     }
 
     return (
@@ -57,8 +79,13 @@ const MatchPage = () => {
                 </div>
                 <div className="swipe-container">
                     <div className="card-container">
-                        {meets.map((meet) =>
-                        <TinderCard className='swipe' key={meet.name} onSwipe={(dir) => swiped(dir, meet.name)} onCardLeftScreen={() => outOfFrame(meet.name)}>
+                        {meets.map((meet, index) =>
+                        <TinderCard 
+                            ref={childRefs[index]}
+                            className='swipe'
+                            key={meet.name}
+                            onSwipe={(dir) => swiped(dir, meet.name, index)} 
+                            onCardLeftScreen={() => outOfFrame(meet.name, index)} >
                             <div className="card">
                                 <div className="meet-image">
                                     <img className="img-meet" src={meet.url} alt="meet-image"></img>
@@ -75,10 +102,10 @@ const MatchPage = () => {
                     </div>
                 </div>
                 <div className="swipeIcon">
-                    <Button onClick={handleSwipeLeft}>
+                    <Button onClick={() => swipe('left')}>
                         <CancelIcon className="itemIconX"></CancelIcon>
                     </Button>
-                    <Button onClick={handleSwipeRight}>
+                    <Button onClick={() => swipe('right')}>
                         <FavoriteIcon className="itemIconL"></FavoriteIcon>
                     </Button>
                     
