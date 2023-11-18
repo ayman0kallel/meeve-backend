@@ -5,6 +5,7 @@ import Profile from "../src/pages/Profile"
 import CreerMeet from "./components/profile/CreerMeet";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MatchPage from "./pages/MatchPage";
+import EditProfile from "./components/profile/EditProfile"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/match" element={<MatchPage/>}/>
           <Route path="/Profile" element={<Profile/>}/>
           <Route path="/CreerMeet" element={<CreerMeet/>}/>
+          <Route path="/EditProfile" element={<EditProfile/>}/>
         </Routes>
       </Router>
     </div>

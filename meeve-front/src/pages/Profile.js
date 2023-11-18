@@ -80,7 +80,7 @@ const Profile = () => {
             sx={styles.avatar}
           />
           <section className='profileHeaderButtons'>
-            <IconButton arial-label = "ManageAccountsOutlinedIcon">
+            <IconButton arial-label = "ManageAccountsOutlinedIcon" component={Link} to="/EditProfile">
               <ManageAccountsOutlinedIcon className='settingsButton'/>
               </IconButton>
           </section>
