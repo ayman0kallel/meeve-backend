@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MatchPage from "./pages/MatchPage";
 import EditProfile from "./components/profile/EditProfile"
 import ChooseSport from "./components/profile/ChooseSport"
+import ChoosePlace from "./components/profile/ChoosePlace"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/CreerMeet" element={<CreerMeet/>}/>
           <Route path="/EditProfile" element={<EditProfile/>}/>
           <Route path="/ChooseSport" element={<ChooseSport/>}/>
+          <Route path="/ChoosePlace" element={<ChoosePlace/>}/>
         </Routes>
       </Router>
     </div>

@@ -112,14 +112,16 @@ const theme = createTheme({
                     </Typography>
                     <ul className='itemPersonal'>
                     <li className='userItem userFavPlace' >
-                        <Link to="/ChooseSport" style={{ textDecoration: 'none' }}>
+                        <Link to="/ChoosePlace" style={{ textDecoration: 'none' }}>
                         <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
                         <Typography className='itemTitle'> <FmdGoodOutlinedIcon className='itemIcon'></FmdGoodOutlinedIcon> Lieu</Typography>
                         </Link>
                     </li> 
                         <li className='userItem userFavSport'>
+                        <Link to="/ChooseSport" style={{ textDecoration: 'none' }}>
                         <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
                         <Typography className='itemTitle'> <FavoriteBorderOutlinedIcon className='itemIcon'></FavoriteBorderOutlinedIcon>  Sport</Typography>
+                        </Link>
                         </li> 
                     </ul>
                 </section>
