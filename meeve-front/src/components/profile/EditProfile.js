@@ -153,7 +153,8 @@ const handleInputChange = (event) => {
                   onClick={() => {
                     if(!formData.prenom == ""){
                       dispatch(updateUsername(formData.prenom));
-                    } else if (!formData.biography == ""){
+                    } 
+                    if (!formData.biography == ""){
                       dispatch(updateBiography(formData.biography));
                     }
                   }}
