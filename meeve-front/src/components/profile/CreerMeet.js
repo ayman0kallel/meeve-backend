@@ -50,9 +50,9 @@ const theme = createTheme({
     },
     palette: {
       primary: {
-        light: '#1ccf90',
-        main: '#1ccf90',
-        dark: '#1ccf90',
+        light: '#00FD90',
+        main: '#00FD90',
+        dark: '#00FD90',
         contrastText: '#fff',
       },
       secondary: {

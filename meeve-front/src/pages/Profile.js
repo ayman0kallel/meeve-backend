@@ -3,14 +3,14 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import GroupIcon from '@mui/icons-material/Group';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Layout from '../components/Layout/Layout.js';
-import MailIcon from '@mui/icons-material/Mail';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from "../assets/img/LOGO.png";
 
@@ -18,15 +18,18 @@ import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
 import { Link } from 'react-router-dom';
 
+import { useSelector} from 'react-redux'
+import { updateUsername, updateBiography, updateFavoriteGym, updateFavoriteSport,friendsCount } from '../store/userStore'
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, sans-serif',
   },
   palette: {
     primary: {
-      light: '#1ccf90',
-      main: '#1ccf90',
-      dark: '#1ccf90',
+      light: '#00FD90',
+      main: '#00FD90',
+      dark: '#00FD90',
       contrastText: '#fff',
     },
     secondary: {
@@ -56,6 +59,10 @@ const styles = {
 };
 
 const Profile = () => {
+  
+//store
+const userStore = useSelector((state) => state.user) //get
+
   const userProfile = {
     username: 'User Name',
     profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -75,38 +82,38 @@ const Profile = () => {
                 </div>
           <section className='profileHeaderContainer'>
           <Avatar className='userAvatar'
-            alt={userProfile.username}
-            src={userProfile.profileImage}
+            alt={userStore.username}
+            src={userStore.profileImage}
             sx={styles.avatar}
           />
           <section className='profileHeaderButtons'>
-            <LogoutIcon className='buttonHeader'></LogoutIcon>
-            <ManageAccountsIcon className='buttonHeader'></ManageAccountsIcon>
+            <IconButton arial-label = "ManageAccountsOutlinedIcon" component={Link} to="/EditProfile">
+              <ManageAccountsOutlinedIcon className='settingsButton'/>
+              </IconButton>
           </section>
-          <Typography className='helloMessage' variant="h5">Bonjour,</Typography>
-          <Typography className='userNameProfile' variant="h5">{userProfile.username}</Typography>     
+          <Typography className='userNameProfile' variant="h5">{userStore.username}</Typography>     
           </section>
           <section className='interactionButtonContainer'>
           <Button variant="contained" endIcon={<AddBoxIcon />} component={Link} to="/CreerMeet">
             Créer un Meet
           </Button>
-          <IconButton aria-label="PersonAddAlt1Icon">
-            <PersonAddAlt1Icon/>
+          <IconButton aria-label="PersonAddOutlinedIcon">
+            <PersonAddOutlinedIcon/>
           </IconButton>
           </section>
           <section className='userPersonalInfo'>
             <ul className='itemPersonal'>
                 <li className='userItem userFriends'>
-                  <Typography className='itemValue'>{userProfile.friendsCount}</Typography>
-                  <Typography className='itemTitle'> <GroupIcon className='itemIcon'></GroupIcon>   Amies</Typography>
+                  <Typography className='itemValue'>{userStore.friendsCount}</Typography>
+                  <Typography className='itemTitle'> <GroupOutlinedIcon className='itemIcon'></GroupOutlinedIcon>   Amies</Typography>
                 </li> 
                 <li className='userItem userFavPlace'>
-                  <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
-                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Lieu</Typography>
+                  <Typography className='itemValue'>{userStore.favoriteGym}</Typography>
+                  <Typography className='itemTitle'> <FmdGoodOutlinedIcon className='itemIcon'></FmdGoodOutlinedIcon> Lieu</Typography>
                 </li> 
                 <li className='userItem userFavSport'>
-                  <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
-                  <Typography className='itemTitle'> <FavoriteIcon className='itemIcon'></FavoriteIcon>   Sport</Typography>
+                  <Typography className='itemValue'>{userStore.favoriteSport}</Typography>
+                  <Typography className='itemTitle'> <FavoriteBorderOutlinedIcon className='itemIcon'></FavoriteBorderOutlinedIcon>  Sport</Typography>
                 </li> 
             </ul>
           </section>
@@ -116,7 +123,7 @@ const Profile = () => {
               Sur-Moi
             </Typography>
             <Typography variant="body2" className='biographyText'>
-              {userProfile.biography}
+              {userStore.biography}
             </Typography>
           </section>
           <section className='userMeets'>
@@ -130,7 +137,7 @@ const Profile = () => {
           </div>
           </section>
           <section className='contactMeeve'>
-            <Typography className='tileContact'>Nous Contacter <MailIcon></MailIcon></Typography>
+            <Typography className='tileContact'>Nous Contacter <EmailOutlinedIcon></EmailOutlinedIcon></Typography>
           </section>
         </div>
       </ThemeProvider>

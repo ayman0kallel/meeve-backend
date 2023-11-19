@@ -10,31 +10,28 @@
 /*HEADER*/
 .profileHeaderContainer{
   width: 100%;
-  height: 25%;
+  height: 30%;
   background-color: #333;
   position: relative;
   text-align: left;
+  padding-top: 5%;
   border-radius: 0px 0px 5px 5px;
 }
 .profileHeaderButtons{
-  display: flex;
-  justify-content: space-between;
-  padding: 3%;
   font-size: 30px;
   color:#7b7b7b;
-  margin-top: 0%;
+  position: absolute;
+  top: -30%;
+  left: 88%;
 }
-.helloMessage{
-  margin-top: 3% !important;
-}
-
-.userNameProfile, .helloMessage{
-  margin-left: 5% !important;
-  color: #E5E5E5;
+.settingsButton{
+  color: #00FD90;
 }
 
 .userNameProfile{
-  color:#1ccf90;
+  margin-left: 5% !important;
+  margin-top: 15% !important;
+  color:#E5E5E5;
   margin-bottom: 3% !important;
 }
 

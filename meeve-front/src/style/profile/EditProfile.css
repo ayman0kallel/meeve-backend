@@ -1,0 +1,74 @@
+.EditProfileContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.logo-editProfile{
+    width: 100%;
+    height: 5.5%;
+    display: flex;
+    justify-content: center;
+}
+.backButton{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: left;
+    padding-bottom: 2%;
+}
+.arrowButton{
+    width: 6%;
+    height: 100%;
+}
+.editProfileHeaderContainer{
+    width: 100%;
+    height: 18%;
+    display: flex;
+    justify-content: center;
+}
+.modifPersonalInfoContainer{
+   
+    width: 100%;
+    height: 80%;
+}
+.editPersonalInfoContainer{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 5%;
+}
+.title{
+    text-align: left;
+    font-weight: 600 !important;
+    margin-top: 5% !important;
+    margin-bottom: 3% !important;
+    color: #333;
+    width: 100%;
+}
+.prenomContainer, .nomContainer{
+    width: 47%;
+}
+.emailContainer{
+    margin-top: 5% !important;
+    width: 100%;
+}
+.aboutMe{
+    width: 100%;
+}
+.editFavoirs{
+    margin-top: 5%;
+    width: 100%;
+    padding-bottom: 5% !important;
+
+}
+.buttonModfiContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.modifProfile{
+    width: 70%;
+}
