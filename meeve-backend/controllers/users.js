@@ -1,4 +1,4 @@
-
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import db from '../models/db.js';
 
@@ -25,7 +25,12 @@ export const createUser = async (req, res) => {
     const [result] = await db.execute(sql, [firstname, lastname, email, hashedPassword]);
 
     if (result.affectedRows === 1) {
-      res.status(201).json({ message: 'User added to the database.' });
+      // Generate JWT token
+      const token = jwt.sign({ userId: result.insertId, email }, 'secretKey', {
+        expiresIn: '1h', // Set the token expiration time
+      });
+
+      res.status(201).json({ message: 'User added to the database.', token });
     } else {
       res.status(500).json({ error: 'Failed to add user to the database.' });
     }
@@ -41,7 +46,6 @@ const checkUserExistsByEmail = async (email) => {
   return rows[0]; // Return the first result or null
 };
 
-// Create a new controller function for user login
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -63,15 +67,24 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // If passwords match, you can generate a JWT token here for authentication
+    // Generate JWT token
+    const token = jwt.sign({ userId: user.id, email }, 'secretKey', {
+      expiresIn: '1h', // Set the token expiration time
+    });
 
     // Return a success message or the JWT token to the client
-    res.status(200).json({ message: 'Login successful', user: { id: user.id, email: user.email } });
+    res.status(200).json({
+      message: 'Login successful',
+      user: { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email },
+      token,
+    });
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
 
 
 // Get all users

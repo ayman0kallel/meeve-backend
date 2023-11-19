@@ -21,7 +21,7 @@ export default function CarteComponent() {
     return null
   }
   
-
+// ajout de filtres à la carte: sport, salle, créneaux
   useEffect(() => {
     // Get the user's current location
     navigator.geolocation.getCurrentPosition(
