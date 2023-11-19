@@ -11,15 +11,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      light: '#1ccf90',
-      main: '#1ccf90',
-      dark: '#1ccf90',
+      light: '#00FD90',
+      main: '#00FD90',
+      dark: '#00FD90',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#2d2d2d',
-      main: '#000000',
-      dark: '#2d2d2d',
+      light: '#333',
+      main: '#333',
+      dark: '#333',
       contrastText: '#000',
     },
     terciary: {
@@ -41,7 +41,10 @@ const NavigationBar = () => {
       backgroundColor: defaultTheme.palette.secondary.main, 
       display:'flex', 
       alignItems: 'center',
-      borderRadius:'36px',
+      borderRadius:'5px',
+      width: '90%',
+      alignSelf: 'center',
+      marginBottom: '2%'
        }}>
       <Toolbar>
         <div className="icon-container">
@@ -50,8 +53,8 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/HomePage">
             <LocationOnOutlinedIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+            fontSize: '2rem'
+            }} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -60,8 +63,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/Match">
             <AddOutlinedIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+            fontSize: '2rem'}} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -70,8 +72,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/Profile">
             <PersonIcon sx={{
-            width: '40px',
-            height: '40px'}} />
+              fontSize: '2rem'}} />
           </IconButton>
         </div>
         <div className="icon-container">
@@ -80,8 +81,7 @@ const NavigationBar = () => {
             margin: '0 8px'
             }} component={Link} to="/profile">
             <Trophy sx={{
-            width: '40px',
-            height: '40px'}}/>
+              fontSize: '2rem'}}/>
           </IconButton>
         </div>
       </Toolbar>
