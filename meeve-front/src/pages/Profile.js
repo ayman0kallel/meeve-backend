@@ -18,6 +18,9 @@ import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
 import { Link } from 'react-router-dom';
 
+import { useSelector} from 'react-redux'
+import { updateUsername, updateBiography, updateFavoriteGym, updateFavoriteSport,friendsCount } from '../store/userStore'
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, sans-serif',
@@ -56,6 +59,10 @@ const styles = {
 };
 
 const Profile = () => {
+  
+//store
+const userStore = useSelector((state) => state.user) //get
+
   const userProfile = {
     username: 'User Name',
     profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -75,8 +82,8 @@ const Profile = () => {
                 </div>
           <section className='profileHeaderContainer'>
           <Avatar className='userAvatar'
-            alt={userProfile.username}
-            src={userProfile.profileImage}
+            alt={userStore.username}
+            src={userStore.profileImage}
             sx={styles.avatar}
           />
           <section className='profileHeaderButtons'>
@@ -84,7 +91,7 @@ const Profile = () => {
               <ManageAccountsOutlinedIcon className='settingsButton'/>
               </IconButton>
           </section>
-          <Typography className='userNameProfile' variant="h5">{userProfile.username}</Typography>     
+          <Typography className='userNameProfile' variant="h5">{userStore.username}</Typography>     
           </section>
           <section className='interactionButtonContainer'>
           <Button variant="contained" endIcon={<AddBoxIcon />} component={Link} to="/CreerMeet">
@@ -97,15 +104,15 @@ const Profile = () => {
           <section className='userPersonalInfo'>
             <ul className='itemPersonal'>
                 <li className='userItem userFriends'>
-                  <Typography className='itemValue'>{userProfile.friendsCount}</Typography>
+                  <Typography className='itemValue'>{userStore.friendsCount}</Typography>
                   <Typography className='itemTitle'> <GroupOutlinedIcon className='itemIcon'></GroupOutlinedIcon>   Amies</Typography>
                 </li> 
                 <li className='userItem userFavPlace'>
-                  <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
+                  <Typography className='itemValue'>{userStore.favoriteGym}</Typography>
                   <Typography className='itemTitle'> <FmdGoodOutlinedIcon className='itemIcon'></FmdGoodOutlinedIcon> Lieu</Typography>
                 </li> 
                 <li className='userItem userFavSport'>
-                  <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
+                  <Typography className='itemValue'>{userStore.favoriteSport}</Typography>
                   <Typography className='itemTitle'> <FavoriteBorderOutlinedIcon className='itemIcon'></FavoriteBorderOutlinedIcon>  Sport</Typography>
                 </li> 
             </ul>
@@ -116,7 +123,7 @@ const Profile = () => {
               Sur-Moi
             </Typography>
             <Typography variant="body2" className='biographyText'>
-              {userProfile.biography}
+              {userStore.biography}
             </Typography>
           </section>
           <section className='userMeets'>

@@ -1,5 +1,6 @@
 //base imports
 import React from 'react';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from "../../assets/img/LOGO.png";
 import Layout from '../Layout/Layout';
@@ -14,6 +15,9 @@ import "../../style/profile/EditProfile.css";
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
+//redux
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUsername, updateBiography, updateFavoriteGym, updateFavoriteSport } from '../../store/userStore'
 
 const theme = createTheme({
     typography: {
@@ -53,6 +57,25 @@ const theme = createTheme({
   };
 
   const EditProfile = () => {
+
+//store
+const userStore = useSelector((state) => state.user) //get
+const dispatch = useDispatch() // set
+
+//form control
+const [formData, setFormData] = useState({
+  prenom: '',
+  nom: '',
+  email: '',
+  biography: '',
+});
+
+const handleInputChange = (event) => {
+  const { id, value } = event.target;
+  setFormData({ ...formData, [id]: value });
+};
+
+
     const userProfile = {
       username: 'User Name',
       profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -62,7 +85,6 @@ const theme = createTheme({
       biography:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lorem eu purus feugiat ullamcorper. Vivamus nec quam ut erat malesuada tincidunt in non libero.',
     };
-  
     return (
       <Layout>
         <ThemeProvider theme={theme}>
@@ -88,23 +110,24 @@ const theme = createTheme({
                     <Typography variant="h6" className='title' >
                         Informations personelles
                     </Typography>
-                    <TextField className='prenomContainer' id="prenom" label="Prénom" variant="outlined" />
-                    <TextField className='nomContainer' id="nom" label="nom" variant="outlined" />
-                    <TextField className='emailContainer' id="email" label="email" variant="outlined" />
+                    <TextField className='prenomContainer' id="prenom" label="Prénom" value={formData.prenom} onChange={handleInputChange} variant="outlined" />
+                    <TextField className='nomContainer' id="nom" label="nom" value={formData.nom} onChange={handleInputChange}  variant="outlined" />
+                    <TextField className='emailContainer' id="email" label="email" value={formData.email} onChange={handleInputChange}  variant="outlined" />
                 </section>
                 <section className='description'>
                     <Typography variant="h6" className='title' >
                         Sur Moi
                     </Typography>
                     <TextField
-                        className='aboutMe'
-                        id="surMoiIndo"
-                        label=""
-                        multiline
-                        rows={2}
-                        defaultValue="last info of sur mois"
-                        variant="filled"
-                        />
+                      className='aboutMe'
+                      id="biography"
+                      label=""
+                      multiline
+                      rows={2}
+                      value={formData.biography} // Utiliza value en lugar de defaultValue
+                      onChange={handleInputChange} 
+                      variant="filled"
+                    />
                 </section>
                 <section className='editFavoirs'>
                      <Typography variant="h6" className='title' >
@@ -113,20 +136,28 @@ const theme = createTheme({
                     <ul className='itemPersonal'>
                     <li className='userItem userFavPlace' >
                         <Link to="/ChoosePlace" style={{ textDecoration: 'none' }}>
-                        <Typography className='itemValue'>{userProfile.favoriteGym}</Typography>
+                        <Typography className='itemValue'>{userStore.favoriteGym}</Typography>
                         <Typography className='itemTitle'> <FmdGoodOutlinedIcon className='itemIcon'></FmdGoodOutlinedIcon> Lieu</Typography>
                         </Link>
                     </li> 
                         <li className='userItem userFavSport'>
                         <Link to="/ChooseSport" style={{ textDecoration: 'none' }}>
-                        <Typography className='itemValue'>{userProfile.favoriteSport}</Typography>
+                        <Typography className='itemValue'>{userStore.favoriteSport}</Typography>
                         <Typography className='itemTitle'> <FavoriteBorderOutlinedIcon className='itemIcon'></FavoriteBorderOutlinedIcon>  Sport</Typography>
                         </Link>
                         </li> 
                     </ul>
                 </section>
                 <section className='buttonModfiContainer'>
-                <Button className='modifProfile' variant="contained" component={Link} to="/Profile">
+                <Button className='modifProfile' variant="contained" component={Link} to="/Profile"
+                  onClick={() => {
+                    if(!formData.prenom == ""){
+                      dispatch(updateUsername(formData.prenom));
+                    } else if (!formData.biography == ""){
+                      dispatch(updateBiography(formData.biography));
+                    }
+                  }}
+                >
                     Modifier
                 </Button>
                 </section>

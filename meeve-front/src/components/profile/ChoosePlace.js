@@ -15,6 +15,9 @@ import basicFit from "../../assets/img/place/basicFit.png";
 import fitPark from "../../assets/img/place/fitPark.png";
 import keepCool from "../../assets/img/place/keepcool.png";
 
+//redux
+import { useSelector, useDispatch } from 'react-redux'
+import { updateFavoriteGym} from '../../store/userStore'
 
 const theme = createTheme({
     typography: {
@@ -43,6 +46,12 @@ const theme = createTheme({
   });
 
   const ChoosePlace = () => {
+
+//store
+const userStore = useSelector((state) => state.user.value) // get
+const dispatch = useDispatch() // set
+
+
     const [favoritePlace, setFavortitePlace] = useState("Fitness");
     const availablePlaces ={
         basicFit: basicFit,
@@ -83,17 +92,21 @@ const theme = createTheme({
                 <li className='userItem placeSize'         
                  onClick={(e) => {
                     setFavortitePlace("Basic Fit");
+                    dispatch(updateFavoriteGym("Basic Fit"));
                 }}>
                 <img src={basicFit} alt="fitness icon" />
                 </li> 
-                <li className='userItem placeSize' onClick={(e) => {
+                <li className='userItem placeSize' 
+                onClick={(e) => {
                     setFavortitePlace("Fitness Park");
+                    dispatch(updateFavoriteGym("Fitness Park"));
                 }}>
                 <img src={fitPark} alt="poids icon"/>
                 </li> 
                 <li className='userItem placeSize'
                    onClick={(e) => {
                     setFavortitePlace("Keepcool");
+                    dispatch(updateFavoriteGym("Keepcool"));
                 }}>
                 <img src={keepCool} alt="boxing icon" />
                 </li> 

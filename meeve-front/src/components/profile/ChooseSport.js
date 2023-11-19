@@ -18,6 +18,9 @@ import natationIcon from "../../assets/img/sports/natation.png";
 import poidsIcon from "../../assets/img/sports/poids.png";
 import yogaIcon from "../../assets/img/sports/yoga.png";
 
+//redux
+import { useSelector, useDispatch } from 'react-redux'
+import { updateFavoriteSport} from '../../store/userStore'
 
 
 const theme = createTheme({
@@ -47,6 +50,11 @@ const theme = createTheme({
   });
 
   const ChooseSport = () => {
+
+//store
+const userStore = useSelector((state) => state.user.value) // get
+const dispatch = useDispatch() // set
+
     const [favoriteSport, setFavoriteSport] = useState("Fitness");
     // const userProfile = {
     //   username: 'User Name',
@@ -82,12 +90,14 @@ const theme = createTheme({
                 <li className='userItem sportSize'         
                  onClick={(e) => {
                     setFavoriteSport("Fitness");
+                    dispatch(updateFavoriteSport("Fitness"));
                 }}>
                 <img src={fitnessIcon} alt="fitness icon" />
                   <Typography className='itemTitle'>Fitness</Typography>
                 </li> 
                 <li className='userItem sportSize' onClick={(e) => {
                     setFavoriteSport("Poids");
+                    dispatch(updateFavoriteSport("Poids"));
                 }}>
                 <img src={poidsIcon} alt="poids icon"/>
                   <Typography className='itemTitle'>Poids</Typography>
@@ -95,6 +105,7 @@ const theme = createTheme({
                 <li className='userItem sportSize'
                    onClick={(e) => {
                     setFavoriteSport("Boxing");
+                    dispatch(updateFavoriteSport("Boxing"));
                 }}>
                 <img src={boxingIcon} alt="boxing icon" />
                   <Typography className='itemTitle'>Boxing</Typography>
@@ -102,6 +113,7 @@ const theme = createTheme({
                 <li className='userItem sportSize'
                    onClick={(e) => {
                     setFavoriteSport("Yoga");
+                    dispatch(updateFavoriteSport("Yoga"));
                 }}>
                 <img src={yogaIcon} alt="yoga icon" />
                   <Typography className='itemTitle'>Yoga</Typography>
@@ -109,6 +121,7 @@ const theme = createTheme({
                 <li className='userItem sportSize'
                    onClick={(e) => {
                     setFavoriteSport("Natation");
+                    dispatch(updateFavoriteSport("Natation"));
                 }}>
                 <img src={natationIcon} alt="Natation icon" />
                   <Typography className='itemTitle'>Natation</Typography>
@@ -116,6 +129,7 @@ const theme = createTheme({
                 <li className='userItem sportSize'
                    onClick={(e) => {
                     setFavoriteSport("Marathon");
+                    dispatch(updateFavoriteSport("Marathon"));
                 }}>
                 <img src={marathonIcon} alt="Marathon icon" />
                   <Typography className='itemTitle'>Marathon</Typography>
