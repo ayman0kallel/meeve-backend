@@ -1,9 +1,9 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import PersonIcon from '@mui/icons-material/AccountCircleOutlined';
-import Trophy from '@mui/icons-material/EmojiEventsOutlined';
+import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -62,7 +62,7 @@ const NavigationBar = () => {
             color: defaultTheme.palette.primary.main,
             margin: '0 8px'
             }} component={Link} to="/Match">
-            <AddOutlinedIcon sx={{
+            <FavoriteBorderOutlinedIcon sx={{
             fontSize: '2rem'}} />
           </IconButton>
         </div>
@@ -80,7 +80,7 @@ const NavigationBar = () => {
             color: defaultTheme.palette.primary.main,
             margin: '0 8px'
             }} component={Link} to="/profile">
-            <Trophy sx={{
+            <ChatBubbleOutlineOutlinedIcon sx={{
               fontSize: '2rem'}}/>
           </IconButton>
         </div>
