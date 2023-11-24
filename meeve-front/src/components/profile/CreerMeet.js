@@ -71,6 +71,7 @@ const theme = createTheme({
   });
 
 // Sports
+// TODO : changer par la table sport de la bdd
 const sports = [
   { label: 'Fitness'},
   { label: 'Abdos'},

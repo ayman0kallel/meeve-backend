@@ -1,13 +1,10 @@
-import mysql from 'mysql2/promise';
+import mysql from 'mysql';
 
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'meeve',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "DBMeeve"
+})
 
-export default pool;
+export default db;

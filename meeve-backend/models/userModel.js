@@ -20,5 +20,5 @@ export const createUserTable = async () => {
   } catch (error) {
     console.error('Error creating user table:', error);
   }
-};
+}; 
 
