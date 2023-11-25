@@ -19,8 +19,8 @@ import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
 import { Link } from 'react-router-dom';
 
-import { useSelector} from 'react-redux'
-import { updateUsername, updateBiography, updateFavoriteGym, updateFavoriteSport,friendsCount } from '../store/userStore'
+import { useSelector} from 'react-redux';
+
 
 const theme = createTheme({
   typography: {
@@ -64,15 +64,6 @@ const Profile = () => {
 //store
 const userStore = useSelector((state) => state.user) //get
 
-  const userProfile = {
-    username: 'User Name',
-    profileImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    favoriteGym: 'Basic Fit',
-    favoriteSport:'Fitness',
-    friendsCount: 50,
-    biography:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lorem eu purus feugiat ullamcorper. Vivamus nec quam ut erat malesuada tincidunt in non libero.',
-  };
 
   return (
     <Layout>
