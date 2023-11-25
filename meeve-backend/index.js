@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import usersRoutes from './routes/users.js'
-import db from './models/db.js'
+import usersRoutes from './routes/userRoutes.js'
+import db from './config/db.js'
 import { createUserTable } from './models/userModel.js'; // Import the createUserTable function correctly
 
 const app = express();
@@ -20,4 +20,6 @@ app.get('/', (req, res) => {
     res.send('Hello from homepage');
 })
 
-app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));
+app.listen(PORT, () => 
+console.log(`Server Running on port: http://localhost:${PORT}`)
+);
