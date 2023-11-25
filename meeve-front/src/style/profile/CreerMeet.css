@@ -46,7 +46,7 @@
     margin-top: 5%;
 }
 .MuiStack-root.css-4jnixx-MuiStack-root {
-    width: 47%;
+    width: 49%;
 }
 .css-4jnixx-MuiStack-root>.MuiTextField-root {
     min-width: 100% !important;
@@ -69,3 +69,15 @@
     width: 93%;
 }
 */
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1gt2dwr-MuiButtonBase-root-MuiButton-root {
+    border-radius: 25px;
+    color: #2d2d2d;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-atlvux-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 100px;
+}
+fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-radius: 100px;
+}

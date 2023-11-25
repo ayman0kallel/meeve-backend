@@ -19,7 +19,8 @@ import "../style/pages/Profile.css";
 import MeetCards from "../components/profile/MeetCards.js";
 import { Link } from 'react-router-dom';
 
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import {updateIcon} from "../store/navBarStore.js";
 
 
 const theme = createTheme({
@@ -63,7 +64,8 @@ const Profile = () => {
   
 //store
 const userStore = useSelector((state) => state.user) //get
-
+const dispatch = useDispatch();
+dispatch(updateIcon("profile"));
 
   return (
     <Layout>

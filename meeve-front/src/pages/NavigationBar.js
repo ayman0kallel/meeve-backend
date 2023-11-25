@@ -55,8 +55,8 @@ const getIconColor = (iconName) => {
       backgroundColor: defaultTheme.palette.secondary.main, 
       display:'flex', 
       alignItems: 'center',
-      borderRadius:'5px',
-      width: '90%',
+      borderRadius:'100px',
+      width: '95%',
       alignSelf: 'center',
       marginBottom: '2%'
        }}>
