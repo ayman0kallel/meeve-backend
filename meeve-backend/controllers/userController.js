@@ -1,9 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import db from '../models/db.js';
+import db from '../config/db.js'
 
 let users = [];
-
 export const createUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
@@ -12,7 +11,6 @@ export const createUser = async (req, res) => {
   if (existingUser) {
     return res.status(409).json({ error: 'Email address already in use.' });
   }
-
   try {
     // Hash the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -25,11 +23,6 @@ export const createUser = async (req, res) => {
     const [result] = await db.execute(sql, [firstname, lastname, email, hashedPassword]);
 
     if (result.affectedRows === 1) {
-      // Generate JWT token
-      const token = jwt.sign({ userId: result.insertId, email }, 'secretKey', {
-        expiresIn: '1h', // Set the token expiration time
-      });
-
       res.status(201).json({ message: 'User added to the database.', token });
     } else {
       res.status(500).json({ error: 'Failed to add user to the database.' });
@@ -67,25 +60,16 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user.id, email }, 'secretKey', {
-      expiresIn: '1h', // Set the token expiration time
-    });
-
     // Return a success message or the JWT token to the client
     res.status(200).json({
       message: 'Login successful',
       user: { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email },
-      token,
     });
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-
-
 
 // Get all users
 export const getUsers = (req, res) => {
@@ -99,54 +83,6 @@ export const getUser = (req, res) => {
   if (!foundUser) {
     return res.status(404).json({ error: 'User not found.' });
   }
-  // Do not expose the password in the response
-  const { password, ...userWithoutPassword } = foundUser;
-  res.status(200).json(userWithoutPassword);
-};
-
-// Delete a user by ID
-export const deleteUser = (req, res) => {
-  const { id } = req.params;
-  const index = users.findIndex((user) => user.id === id);
-  if (index === -1) {
-    return res.status(404).json({ error: 'User not found.' });
-  }
-  users.splice(index, 1);
-  res.status(200).json({ message: `User with id ${id} deleted.` });
-};
-
-// Update a user by ID
-export const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { firstname, lastname, email, password } = req.body;
-  const user = users.find((user) => user.id === id);
-
-  if (!user) {
-    return res.status(404).json({ error: 'User not found.' });
-  }
-
-  // Update user fields
-  if (firstname) {
-    user.firstname = firstname;
-  }
-
-  if (lastname) {
-    user.lastname = lastname;
-  }
-
-  if (email) {
-    // Check if the new email already exists
-    const emailExists = users.some((u) => u.email === email && u.id !== id);
-    if (emailExists) {
-      return res.status(409).json({ error: 'Email address already in use.' });
-    }
-    user.email = email;
-  }
-
-  if (password) {
-    // Hash the new password before updating
-    user.password = await bcrypt.hash(password, 10);
-  }
-
-  res.status(200).json({ message: `User with id ${id} updated` });
+  const { password, ...user} = foundUser;
+  res.status(200).json(user);
 };

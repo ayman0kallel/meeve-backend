@@ -1,4 +1,4 @@
-import db from './db.js'; // Import the database connection
+import db from '../config/db.js'; // Import the database connection
 
 export const createUserTable = async () => {
   try {

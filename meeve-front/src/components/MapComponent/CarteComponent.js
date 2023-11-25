@@ -8,15 +8,26 @@ import logo from "../../assets/img/LOGO.png";
 import LocationOn from "../../assets/img/Location-on.png";
 import LocationOff from "../../assets/img/Location-off.png";
 import { useEffect, useState } from "react";
-import {  Drawer, Fab, IconButton, List, ListItem, ListItemText } from "@mui/material";
+import {Drawer, Fab, IconButton, Typography } from "@mui/material";
 import TuneIcon from '@mui/icons-material/Tune';
 import CloseIcon from '@mui/icons-material/Close';
+import basicFit from "../../assets/img/gym/basicFit.png"
+import fitPark from "../../assets/img/gym/fitpark.png"
+import keepCool from "../../assets/img/gym/keepCool.png"
+import lappartFit from "../../assets/img/gym/lappartFit.png"
 
 export default function CarteComponent() {
   const [userLocation, setUserLocation] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [isFilterDialogOpen, setFilterDialogOpen] = useState(false);
-  
+  const [selectedSportButton, setSelectedSportButton] = useState(null);
+  const [clickedSportBtn, setClickedSportBtn] = useState([]);
+  const [clickedTimeBtn, setClickedTimeBtn] = useState([]);
+  const [clickedLocationBtn, setClickedLocationBtn] = useState([]);
+
+  const sportsList = ['Fitness', 'Boxe', 'Running', 'Yoga', 'Muscu', 'Tennis'];
+  const horaireList = ['06-08h', '08-10h', '10-12h', '12-14h', '14-16h', '16-18h', '18-20h', '20-22h', '22-00h'];
+  const gymList = [basicFit, fitPark, keepCool, lappartFit];
   function MapComponent(){
     useMapEvents({
       click(){
@@ -25,7 +36,24 @@ export default function CarteComponent() {
     })
     return null
   }
-  
+  const handleSportButtonClick = (index) => {
+    const updatedButtons = [...clickedSportBtn];
+    updatedButtons[index] = !updatedButtons[index];
+
+    setClickedSportBtn(updatedButtons)
+  };
+  const handleTimeButtonClick = (index) => {
+    const updatedButtons = [...clickedTimeBtn];
+    updatedButtons[index] = !updatedButtons[index];
+
+    setClickedTimeBtn(updatedButtons)
+  };
+  const handleLocationButtonClick = (index) => {
+    const updatedButtons = [...clickedLocationBtn];
+    updatedButtons[index] = !updatedButtons[index];
+
+    setClickedLocationBtn(updatedButtons)
+  };
 // ajout de filtres à la carte: sport, salle, créneaux
   useEffect(() => {
     // Get the user's current location
@@ -38,10 +66,11 @@ export default function CarteComponent() {
       }
     );
   }, []);
+
   if (!userLocation) {
-    // Return loading or fallback UI here if userLocation is not available yet
     return <div>Refresh...</div>;
   }
+
   //markers
   const markers = [
     {
@@ -70,6 +99,7 @@ export default function CarteComponent() {
       iconSize: point(33, 33, true),
     });
   };
+
   const handleMarkerClick = (index) => {
     setSelectedMarker(index);
   };
@@ -102,30 +132,75 @@ export default function CarteComponent() {
           open={isFilterDialogOpen} 
           onClose={handleCloseFilterDialog} 
           variant="temporary" 
-          style={{ zIndex: 1000}}
+          PaperProps={{
+            sx: {
+              borderRadius:'0 0 25px 25px',
+              backgroundColor: '#fffbf1',
+              zIndex: 1000
+            }
+          }}
         >
-        <div className="logo-container">
-          <img src={logo} alt="Logo" />
-        </div>
-          <List>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8px' }}>
-              <IconButton onClick={handleCloseFilterDialog} style={{ fontSize: '2rem', color: '#333' }}>
-                <CloseIcon style={{ fontSize: '2.5rem' }} />
-              </IconButton>
-            </div>
-            <ListItem >
-              <ListItemText primary="Option 1" />
-            </ListItem>
-            <ListItem >
-              <ListItemText primary="Option 2" />
-            </ListItem>
-            <ListItem >
-              <ListItemText primary="Option 1" />
-            </ListItem>
-            <ListItem >
-              <ListItemText primary="Option 2" />
-            </ListItem>
-          </List>
+          <div className="logo-container">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8px' }}>
+                <IconButton onClick={handleCloseFilterDialog} style={{ fontSize: '2rem', color: '#333' }}>
+                  <CloseIcon style={{ fontSize: '2.5rem' }} />
+                </IconButton>
+          </div>
+          <section  className='filterSection' >
+            <Typography variant="h6" className='filterTitle' >
+              Sport
+            </Typography>
+          </section>
+          <div className="sportButtons">
+            {sportsList.map((sport, index) => (
+              <button
+                key={index}
+                variant="contained"
+                className={`sportButtons bn37 ${clickedSportBtn[index] ? 'clicked' : ''}`}
+                onClick={() => handleSportButtonClick(index)}
+              >
+                {sport}
+              </button>
+            ))}
+          </div>
+
+          <section  className='filterSection' >
+            <Typography variant="h6" className='filterTitle' >
+              Horaire
+            </Typography>
+          </section>
+          <div className="sportButtons">
+            {horaireList.map((horaire, index) => (
+              <button
+                key={index}
+                variant="contained"
+                className={`sportButtons bn37 ${clickedTimeBtn[index] ? 'clicked' : ''}`}
+                onClick={() => handleTimeButtonClick(index)}
+              >
+                {horaire}
+              </button>
+            ))}
+          </div>
+          <section  className='filterSection' >
+            <Typography variant="h6" className='filterTitle' >
+              Lieu
+            </Typography>
+          </section>
+          <div className="sportButtons" style={{marginBottom:"10%"}}>
+            {gymList.map((gym, index) => (
+              <button
+                key={index}
+                variant="contained"
+                className={`sportButtons bn37 ${clickedLocationBtn[index] ? 'clicked' : ''}`}
+                onClick={() => handleLocationButtonClick(index)}
+              >
+                <img src={gym} />
+              </button>
+            ))}
+          </div>
+          
         </Drawer>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap </a> contributors'

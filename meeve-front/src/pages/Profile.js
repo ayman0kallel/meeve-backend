@@ -60,31 +60,6 @@ const styles = {
 };
 
 const Profile = () => {
-  // const [userProfile, setUserProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        // Get the token from where you stored it (e.g., localStorage)
-        const token = localStorage.getItem('token');
-        console.log("token: ",token);
-
-        // Make a GET request to the server's profile endpoint with the token
-        const response = await axios.get('http://localhost:5000/users/logged-user', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log("userData :",response.data)
-      } catch (error) {
-        console.error('Error fetching user profile:', error);
-      }
-    };
-
-    fetchUserProfile();
-  }, []);
   
 //store
 const userStore = useSelector((state) => state.user) //get
