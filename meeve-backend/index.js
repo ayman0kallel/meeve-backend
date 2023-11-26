@@ -48,6 +48,14 @@ app.post("/meets", (req,res) => {
     })
 })
 
+// Les sports
+app.get("/sports", (req,res) => {
+    const q = "SELECT * FROM sports"
+    db.query(q,(err,data) => {
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
 
 
 app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));

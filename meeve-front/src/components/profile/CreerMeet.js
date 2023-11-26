@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Layout from '../Layout/Layout';
 import TextField from '@mui/material/TextField';
@@ -26,6 +26,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
 import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
+import axios from 'axios';
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyCPGSHVtCPu2WInyU8cHwsLxhTUnfSqD4E';
 
@@ -70,19 +71,11 @@ const theme = createTheme({
     },
   });
 
-// Sports
-// TODO : changer par la table sport de la bdd
-const sports = [
-  { label: 'Fitness'},
-  { label: 'Abdos'},
-  { label: 'Streching'},
-  { label: 'Musculation'},
-  { label: 'Boxe'},
-  { label: 'Danse Classique'},
-  { label: 'Danse Orientale'},
-];
-
   const CreerMeet = () => {
+    
+    // sports
+    const [sports, setSports] = useState([]);
+    const [selectedSport, setSelectedSport] = useState(null);
     //heure
     const [value, setValue] = React.useState(dayjs('2022-04-17T15:30'));
     // google maps
@@ -101,6 +94,24 @@ const sports = [
       }
   
       loaded.current = true;
+    }
+
+
+    useEffect(() => {
+      const fetchAllSports = async () => {
+        try {
+            const res = await axios.get("http://localhost:5000/sports")
+            setSports(res.data);
+            console.log(res.data);
+        } catch(err) {
+            console.log(err)
+        }
+      }
+      fetchAllSports()
+    }, [])
+
+    const handleSportChange = (event, value) => {
+      setSelectedSport(value);
     }
 
     // fetch places
@@ -175,8 +186,11 @@ const sports = [
                   disablePortal
                   id="combo-box-demo"
                   options={sports}
+                  getOptionLabel={(option) => option.name}
+                  onChange={handleSportChange}
+                  value={selectedSport}
                   sx={{ width: 300 }}
-                  renderInput={(params) => <TextField {...params} label="Sport" />}
+                  renderInput={(params) => <TextField {...params} label="Choisissez un sport" />}
                 />
                 <section className='datePickerContainer'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
