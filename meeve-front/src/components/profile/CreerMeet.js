@@ -102,7 +102,6 @@ const theme = createTheme({
         try {
             const res = await axios.get("http://localhost:5000/sports")
             setSports(res.data);
-            console.log(res.data);
         } catch(err) {
             console.log(err)
         }
@@ -160,7 +159,29 @@ const theme = createTheme({
       };
     }, [valueM, inputValue, fetch]);
 
+// soumission du formulaire
+    const handleCreateMeet = async () => {
+      try{
+        if(!selectedSport || !value || !valueM) {
+          console.error("Veuillez selectionner un sport, une date, une heure et un lieu.");
+          return;
+        }
 
+        const meetData = {
+          sport_id: selectedSport.id_sport,
+          date: value.format('YYYY-MM-DD'),
+          time: value.format('HH:mm'),
+          location: valueM.description,
+          author_id: 1 // recup l'id de l'auteur (id user)
+        };
+        console.log("Meet Data:", meetData);
+        const response = await axios.post("http://localhost:5000/meet", meetData);
+        console.log(response.data);
+
+      } catch(err) {
+        console.error("Erreur lors de la création du Meet :", err);
+      }
+    }
 
     return (
       <Layout>
@@ -266,7 +287,7 @@ const theme = createTheme({
                     }}
                   />
                             <section className='submitCreerunMeet'>
-                            <Button variant="contained" endIcon={<AddBoxIcon />}>
+                            <Button variant="contained" endIcon={<AddBoxIcon />} onClick={handleCreateMeet}>
                               Créer un Meet
                             </Button>
                             </section>

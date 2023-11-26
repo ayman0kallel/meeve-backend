@@ -32,19 +32,20 @@ app.get("/meets", (req, res) => {
     })
 })
 
-app.post("/meets", (req,res) => {
-    const q = "INSERT INTO meets (`sport_id`,`date`, `time`, `location`, `author_id`) VALUES (?)"
-    const values = [
-        req.body.sport_id,
-        req.body.date,
-        req.body.time,
-        req.body.location,
-        req.body.author_id
-    ];
+app.post("/meet", (req,res) => {
 
-    db.query(q, [values], (err,data) => {
+    const { sport_id, date, time, location, author_id } = req.body;
+
+    if (!sport_id || !date || !time || !location || !author_id) {
+        return res.status(400).json({ error: "Tous les champs sont obligatoires" });
+    }
+
+    const q = "INSERT INTO meets (`sport_id`,`date`, `time`, `location`, `author_id`) VALUES (?, ?, ?, ?, ?)"
+    const values = [sport_id, date, time, location, author_id];
+
+    db.query(q, values, (err,data) => {
         if(err) return res.json(err);
-        return res.json("meets has been created");
+        return res.json("meet has been created");
     })
 })
 
