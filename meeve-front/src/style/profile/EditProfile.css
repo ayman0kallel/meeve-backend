@@ -29,6 +29,11 @@
     height: 18%;
     display: flex;
     justify-content: center;
+    background-image: url("../../assets/img/greenBar.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: 80%;
 }
 .modifPersonalInfoContainer{
    
@@ -71,6 +76,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 10%;
 }
 .modifProfile{
     width: 70%;
