@@ -208,3 +208,7 @@ a.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrima
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.meetsCardsContainer.css-ablsu8-MuiPaper-root-MuiCard-root {
   border-radius: 25px;
 }
+a.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-5j1l4h {
+  border-radius: 25px;
+  color: #2d2d2d;
+}
