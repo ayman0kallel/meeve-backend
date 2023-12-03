@@ -6,18 +6,19 @@ import db from './config/db.js'
 import { createUserTable } from './models/userModel.js'; // Import the createUserTable function correctly
 
 const app = express();
+const cors = require('cors');
 const PORT = 5000;
 
 // Call the createUserTable function to create the 'users' table
 createUserTable(); // Corrected function call
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
-    res.send('hallow averi one');
+    res.send('this is Meeve api.');
 })
 
 app.listen(PORT, () => 
