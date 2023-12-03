@@ -17,7 +17,7 @@ app.use(cors());
 app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Hello from homepage');
+    res.send('hallow averi one');
 })
 
 app.listen(PORT, () => 
