@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Meeve-git-deploy/static/css/main.03b039af.css",
+    "main.js": "/Meeve-git-deploy/static/js/main.e506b20e.js",
+    "index.html": "/Meeve-git-deploy/index.html",
+    "main.03b039af.css.map": "/Meeve-git-deploy/static/css/main.03b039af.css.map",
+    "main.e506b20e.js.map": "/Meeve-git-deploy/static/js/main.e506b20e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03b039af.css",
+    "static/js/main.e506b20e.js"
+  ]
+}
