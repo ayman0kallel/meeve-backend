@@ -2,7 +2,7 @@
   "name": "meeve-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ayman0kallel.github.io/Meeve-git-deploy",
+  "homepage": "https://meeve-git-deploy.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
