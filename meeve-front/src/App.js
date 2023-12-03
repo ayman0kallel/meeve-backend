@@ -14,7 +14,7 @@ import  Rewards from "./components/profile/Rewards"
 function App() {
   return (
     <div>
-      <Router>
+      <Router basename="/Meeve-git-deploy">
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/Signup" element={<SignUp/>}/>
