@@ -1,10 +1,10 @@
 import mysql from 'mysql2/promise';
 
 const pool = mysql.createPool({
-  host: 'sql11.freesqldatabase.com',
-  user: 'sql11667222',
-  password: 'FnwwLILQXL',
-  database: 'sql11667222',
+  host: 'bmh2im2ylfllimnghqfq-mysql.services.clever-cloud.com',
+  user: 'u1nvoeai1uwpnesg',
+  password: 'nkkYkWZKM5CAYWrLY2fv',
+  database: 'bmh2im2ylfllimnghqfq',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
