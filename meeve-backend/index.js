@@ -9,7 +9,7 @@ import { createSportTable } from './models/sportModel.js';
 
 
 const app = express();
-const PORT = 5000;
+const PORT = 3306;
 
 
 async function createDB() {
