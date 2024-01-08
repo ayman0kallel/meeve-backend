@@ -28,7 +28,7 @@ app.use(cors());
 app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Hello from homepage');
+    res.send('MEEVE BackEnd HomePage');
 })
 
 // Les meets
@@ -123,5 +123,5 @@ app.post('/swipe',(req,res) => {
 }) */
 
 app.listen(PORT, () => 
-console.log(`Server Running on port: http://localhost:${PORT}`)
+console.log(`Server Running on port: https://meeveapi.onrender.com:${PORT}`)
 );
